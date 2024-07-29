@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body  class="h-[100vh]  flex justify-center items-center bg-cover " style="background-image: url('images/background.jpg')">
+
+  <div class=" w-[400px] md:w-[600px] h-[550px] bg-white rounded-[30px] py-[60px] px-[80px] space-y-[40px] md:space-y-[80px] text-center">
+
+    <p class="text-[18px] font-bold">
+      Sickle cell disease is one of the most common genetic causes of illness worldwide. It can be prevented before things get too late. Your wanna know how?
+    </p>
+    <button class=" border shadow-lg px-7 py-5 rounded-[10px] bg-[#3F7FC2] text-white w-[250px]" onclick="askForSicklingStatus()">Please click here to enter your sickling status</button>
+    <p id="sicklingStatus"></p>
+  </div>
+  
+ 
+
+  <script>
+    function askForSicklingStatus() {
+      const sicklingStatus = prompt('What is your sickling status?Please enter your genotype (AA,AC, AS, SC):');
+      const partnerStatus = prompt('What is your partner sickling status: ? Please enter your genotype (AA,AC, AS, SC)');
+
+      if (sicklingStatus === 'AA' && partnerStatus === 'AA') {
+        document.getElementById("sicklingStatus").textContent = 'If you and your partner are both AA, your children will not have sickle cell disease.';
+      } else if (sicklingStatus=== 'AA' && partnerStatus === 'AS' || partnerStatus=== 'AA' && sicklingStatus === 'AS') {
+        document.getElementById("sicklingStatus").textContent = 'At each pregnancy, there is a 50% chance of your child being AS (carrier) and a 50% chance of him/her being AA.';
+      }
+      else if (sicklingStatus=== 'SS' && partnerStatus === 'AA' || partnerStatus=== 'AS' && sicklingStatus === 'AA') {
+        document.getElementById("sicklingStatus").textContent = 'At each pregnancy, there is a 100% chance that your child will be AS (carrier).';
+    }
+    else if (sicklingStatus=== 'SS' && partnerStatus === 'SS') {
+        document.getElementById("sicklingStatus").textContent = 'At each pregnancy, there is a 100% chance that your child will be SS.';
+    }
+    else if (sicklingStatus=== 'AA' && partnerStatus === 'SC' || partnerStatus=== 'AA' && sicklingStatus === 'SC') {
+        document.getElementById("sicklingStatus").textContent = 'At each pregnancy, there is a 50% chance that your child will be AS (carrier) and a 50% chance that your child will be AC (carrier).';
+    }
+    else if (sicklingStatus=== 'AS' && partnerStatus === 'AS') {
+        document.getElementById("sicklingStatus").textContent = 'At each pregnancy, there is a 25% chance that your child will be AA (Normal), a 50% chance that he will be AS (carrier) and a 25% chance that he/she will have sickle cell disease (SS).';
+    }
+    else if (sicklingStatus=== 'SC' && partnerStatus === 'SC' ) {
+        document.getElementById("sicklingStatus").textContent = 'At each pregnancy, there is a 25% chance that your child will have sickle cell disease (SS),  a 50% chance that your child will be SC (sicle cell disease) and a 25% chance of CC.';
+    }
+    else if (sicklingStatus !== 'AA' || 'AS' || 'SS' || 'SC' && partnerStatus !=='AA' || 'AS' || 'SS' || 'SC' ) {
+      document.getElementById("sicklingStatus").textContent = 'You may be having a rare form of sickle cell disease. Kindly discuss with your doctor';
+    }
+  }
+  </script>
+
+</body>
+</html>
